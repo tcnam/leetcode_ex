@@ -10,16 +10,14 @@ def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
                         .shift(
                             periods = 1
                             , axis = 0
-                        )
-                )
+                        ))
                 , after_num = (
                     logs
                         .loc[:, ['num']]
                         .shift(
                             periods = -1
                             , axis = 0
-                        )                   
-                )
+                        ))
             )
     )
     result : pd.DataFrame = (
