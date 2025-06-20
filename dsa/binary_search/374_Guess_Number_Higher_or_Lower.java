@@ -1,4 +1,5 @@
 package binary_search;
+
 class Solution {
     public int guessNumber(int n) {
         int left = 1;
