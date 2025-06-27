@@ -1,4 +1,4 @@
-package sorting;
+package binary_search;
 import java.util.Arrays;
 
 class Solution {
