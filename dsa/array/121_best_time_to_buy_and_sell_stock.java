@@ -1,3 +1,4 @@
+package array;
 class Solution {
     public int maxProfit(int[] prices) {
         int buyInd = 0;
