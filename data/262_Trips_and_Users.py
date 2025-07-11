@@ -32,7 +32,7 @@ def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
             ]
             .groupby(by = ['request_at'], axis = 0, as_index = False)
             .agg(
-                trip_count = pd.NamedAgg(column = 'status_flag', aggfunc = 'count')
+                trip_count = pd.a(column = 'status_flag', aggfunc = 'count')
                 , cancel_trip_count = pd.NamedAgg(column = 'status_flag', aggfunc = 'sum')
             )
     )
