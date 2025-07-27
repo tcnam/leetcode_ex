@@ -24,7 +24,7 @@ class Solution {
         int leftMaxHeight = 1 + this.maxHeightCal(root.left);
         int rightMaxHeight = 1 + this.maxHeightCal(root.right);
 
-        if Matb.abs(leftMaxHeight - rightMaxHeight) > 1{
+        if (Math.abs(leftMaxHeight - rightMaxHeight) > 1){
             return false;
         }
         else {
