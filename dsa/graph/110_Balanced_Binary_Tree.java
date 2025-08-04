@@ -21,24 +21,29 @@ class Solution {
             return true;
         }
         
-        int leftMaxHeight = 1 + this.maxHeightCal(root.left);
-        int rightMaxHeight = 1 + this.maxHeightCal(root.right);
+        int result = this.heightCal(root);
 
-        if (Math.abs(leftMaxHeight - rightMaxHeight) > 1){
+        if (result == -1){
             return false;
         }
-        else {
+        else{
             return true;
         }
     }
 
-    public int maxHeightCal (TreeNode root){
+    public int heightCal (TreeNode root){
         if (root == null){
             return 0;
         }
 
-        int leftMaxHeight = 1 + this.maxHeightCal(root.left);
-        int rightMaxHeight = 1 + this.maxHeightCal(root.right);
-        return Math.max(leftMaxHeight, rightMaxHeight);
+        int leftMaxHeight = this.heightCal(root.left);
+        int rightMaxHeight = this.heightCal(root.right);
+
+        if (leftMaxHeight == -1 || rightMaxHeight == -1 || Math.abs(leftMaxHeight - rightMaxHeight) > 1 == true){
+            return -1;
+        }
+        else{
+            return 1 + Math.max(leftMaxHeight, rightMaxHeight);
+        }   
     }
 }
