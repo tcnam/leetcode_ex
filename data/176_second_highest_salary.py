@@ -5,8 +5,7 @@ def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
         employee
             .drop_duplicates(
                 subset = ['salary']
-                , keep = 'first'
-            )
+                , keep = 'first')
             .assign(
                 # create new column call rank using denserank parition no order by salary desc
                 rank = (
@@ -16,22 +15,18 @@ def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
                             axis = 0
                             , method = 'dense'
                             , ascending = False
-                        )
-                )
-            )
+                        )))
     )
     result_df : pd.DataFrame = (
         transform_df
             .loc[
                 transform_df['rank'] == 2
-                , ['salary']
-            ]
+                , ['salary']]
             .rename(
                 mapper = {
                     'salary': 'SecondHighestSalary'
                 }
-                ,axis = 1
-            )
+                ,axis = 1)
     )
 
     # result_df : pd.DataFrame = (

@@ -12,8 +12,7 @@ def combine_two_tables(person: pd.DataFrame, address: pd.DataFrame) -> pd.DataFr
                 , how = 'left'
                 , left_on = ['personId']
                 , right_on = ['personId']
-                , copy = True
-                )
+                , copy = True)
             .loc[:, col_list]
     )
     return result_df

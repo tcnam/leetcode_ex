@@ -41,18 +41,14 @@ def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
         transform_df
             .assign(
                 cancel_rate = (
-                    (transform_df['cancel_trip_count'] / transform_df['trip_count']).round(decimals = 2))
-                )
+                    (transform_df['cancel_trip_count'] / transform_df['trip_count']).round(decimals = 2)))
             .loc[
                 :
-                , ['request_at', 'cancel_rate']
-            ]
+                , ['request_at', 'cancel_rate']]
             .rename(
                 mapper = {
                     'request_at': 'Day'
                     , 'cancel_rate': 'Cancellation Rate'} 
                 , axis = 1)
     )
-
-
     return result_df

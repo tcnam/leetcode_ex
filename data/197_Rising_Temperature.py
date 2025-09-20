@@ -17,8 +17,7 @@ def rising_temperature(weather: pd.DataFrame) -> pd.DataFrame:
                         .loc[:, ['recordDate']]
                         .shift(periods = 1, axis = 0))
                 , last_date = (
-                    transform_df1.loc[:, ['recordDate']]- pd.Timedelta(days=1))
-            )
+                    transform_df1.loc[:, ['recordDate']]- pd.Timedelta(days=1)))
     )
 
     result_df : pd.DataFrame = (

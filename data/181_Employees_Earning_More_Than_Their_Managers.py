@@ -9,21 +9,18 @@ def find_employees(employee: pd.DataFrame) -> pd.DataFrame:
                 , left_on = ['managerId']
                 , right_on = ['id']
                 , copy = True
-                , suffixes = ['_e', '_m']
-            )
+                , suffixes = ['_e', '_m'])
     )
 
     result_df : pd.DataFrame = (
         merge_df
             .loc[
                 merge_df['salary_e'] > merge_df['salary_m']
-                , ['name_e']
-            ]
+                , ['name_e']]
             .rename(
                 mapper = {
                     'name_e': 'Employee'
                 }
-                , axis = 1
-            )
+                , axis = 1)
     )
     return result_df

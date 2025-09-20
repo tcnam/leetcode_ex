@@ -9,9 +9,7 @@ def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFram
                 , left_on = ['id']
                 , right_on = ['customerId']
                 , copy = True
-                , suffixes= ['_cust', '_order']
-            )
-
+                , suffixes= ['_cust', '_order'])
     )
 
     result_df : pd.DataFrame = (

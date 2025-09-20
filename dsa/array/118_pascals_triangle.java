@@ -1,4 +1,4 @@
-package 1array;
+package array;
 import java.util.*;
 
 class Solution {

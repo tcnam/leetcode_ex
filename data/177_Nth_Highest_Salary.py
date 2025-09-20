@@ -5,8 +5,7 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
         employee
             .drop_duplicates(
                 subset = ['salary']
-                , keep = 'first'
-            )
+                , keep = 'first')
             .assign(
                 rank = (
                     employee
@@ -15,22 +14,19 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
                             axis = 0
                             , method = 'dense'
                             , ascending = False
-                        ))
-            )
+                        )))
     )
 
     result_df : pd.DataFrame = (
         transform_df
             .loc[
                 transform_df['rank'] == N
-                , ['salary']
-            ]
+                , ['salary']]
             .rename (
                 mapper = {
                     'salary': f'getNthHighestSalary({N})'
                 }
-                , axis = 1
-            )
+                , axis = 1)
     )
 
     if len(result_df) < 1:
