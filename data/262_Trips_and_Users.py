@@ -28,13 +28,11 @@ def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
                     & (merge_df['banned_client'] == 'No')
                     & (pd.to_datetime(merge_df['request_at']) >= datetime.datetime.strptime('2013-10-01', '%Y-%m-%d'))
                     & (pd.to_datetime(merge_df['request_at']) <= datetime.datetime.strptime('2013-10-03', '%Y-%m-%d'))
-                , ['request_at', 'status_flag']
-            ]
+                , ['request_at', 'status_flag']]
             .groupby(by = ['request_at'], axis = 0, as_index = False)
             .agg(
                 trip_count = pd.a(column = 'status_flag', aggfunc = 'count')
-                , cancel_trip_count = pd.NamedAgg(column = 'status_flag', aggfunc = 'sum')
-            )
+                , cancel_trip_count = pd.NamedAgg(column = 'status_flag', aggfunc = 'sum'))
     )
 
     result_df: pd.DataFrame = (
