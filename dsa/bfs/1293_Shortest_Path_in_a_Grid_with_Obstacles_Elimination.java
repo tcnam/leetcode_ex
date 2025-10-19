@@ -4,8 +4,8 @@ import java.util.*;
 class Solution {
     public int shortestPath(int[][] grid, int k) {
         int numRows = grid.length;
-        int numCol = grid[0].length;
-        int[][][] visited = new int[numRows][numCol][k+1];
+        int numCols = grid[0].length;
+        int[][][] visited = new int[numRows][numCols][k+1];
 
         Queue<int[]> queue = new LinkedList<int[]>();
         queue.offer(new int[]{0, 0, k});
@@ -22,7 +22,7 @@ class Solution {
                 int colIdx = tmpNode[1];
                 int remainObs = tmpNode[2];
                 if (rowIdx == numRows - 1
-                && colIdx == numCol -1){
+                && colIdx == numCols -1){
                     return result;
                 }
 
@@ -30,9 +30,9 @@ class Solution {
                     int adjRow = rowIdx + adjDelta[j][0];
                     int adjCol = colIdx + adjDelta[j][1];
                     if (adjRow >= 0 && adjRow < numRows
-                    && adjCol >=0 && adjCol < numCol){
+                    && adjCol >=0 && adjCol < numCols){
                         if (adjRow == numRows - 1
-                        && adjCol == numCol -1){
+                        && adjCol == numCols -1){
                             return result + 1;
                         }
                         if (grid[adjRow][adjCol] == 1 
