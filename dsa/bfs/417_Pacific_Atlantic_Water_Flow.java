@@ -12,21 +12,19 @@ class Solution {
         
         for (int i = 0; i < numRows; i++){
             for (int j = 0; j < numCols; j++){
-                if ((i == 0 && j == numCols - 1)
-                    || (i == numRows - 1 && j == 0)){
+                if ((i - 1 < 0 && i + 1 >= numRows)
+                    || (j - 1 < 0 && j + 1 >= numCols)
+                    || (i - 1 < 0 && j + 1 >= numCols
+                    || (j - 1 < 0 && i + 1 >= numRows))){
                     queue.offer(new int[]{i, j, 1, 1});
-                // Parific
-                } else if ((i == 0 && j < numCols - 1)
-                        || (i < numRows - 1 && j == 0)){
+                }
+                else if (i - 1 < 0 || j - 1 < 0){
                     queue.offer(new int[]{i, j, 1, 0});
-                } else if ((i == numRows - 1 && j > 0)
-                        || (i > 0 && j == numCols - 1)){
+                }
+                else if (i + 1 >= numRows || j + 1 >= numCols){
                     queue.offer(new int[]{i, j, 0, 1});
                 }
             }
-        }
-        for (int[] arr : queue) {
-            System.out.println(Arrays.toString(arr));
         }
 
         while (!queue.isEmpty()){
