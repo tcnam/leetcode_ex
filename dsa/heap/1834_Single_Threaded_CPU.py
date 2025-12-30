@@ -1,36 +1,39 @@
-from typing import List
+from typing import List, Tuple
 
 class Solution:
     def getOrder(self, tasks: List[List[int]]) -> List[int]:
+        for i in range(0, len(tasks), 1):
+            tasks[i].append(i)
+
         sortedTasks: List[int] = sorted(tasks, key = Solution.sortByFirstVal, reverse = False)
+
         curTime: int = 0
+        taskInd: int = 0
+
         result: List[int] = []
         minHeap: MinHeap = MinHeap()
-
-        for ind, val in enumerate(sortedTasks):
-            curQueueTime = val[0]
-            task: Task = Task(ind, val[0], val[1])
-            minHeap.addTask(task)
-            if not lock and len(minHeap.nodes) > 0:
-                lock = True
         
-        while len(minHeap.nodes) > 0:
-            result.append(minHeap.popTask().ind)
+        while taskInd < len(tasks) or minHeap.nodes:
+            if not minHeap.nodes:
+                curTime = max(curTime, sortedTasks[taskInd][0])
+            
+            while taskInd < len(tasks) and sortedTasks[taskInd][0] <= curTime:
+                minHeap.addTask((sortedTasks[taskInd][1], sortedTasks[taskInd][2]))
+                taskInd += 1
+            
+            procTime, ind = minHeap.popTask()
+            result.append(ind)
+            curTime += procTime
         
         return result
 
     def sortByFirstVal(x:List[int]) -> int:
-        return x[0]
+        return x[0], x[2]
 
-class Task:
-    def __init__(self, ind: int, queueTime: int, procTime: int):
-        self.ind: int = ind
-        self.queueTime: int = queueTime
-        self.procTime: int = procTime
 
 class MinHeap:
     def __init__(self):
-        self.nodes: List[Task] = []
+        self.nodes: List[Tuple[int]] = []
     
     def getLeftChildInd(self, ind: int) -> int:
         return ind * 2 + 1
@@ -45,7 +48,7 @@ class MinHeap:
         return ind >= 0 and ind < len(self.nodes)
     
     def swap(self, firstInd: int, secondInd):
-        tmpVal: int = self.nodes[firstInd]
+        tmpVal: Tuple[int] = self.nodes[firstInd]
         self.nodes[firstInd] = self.nodes[secondInd]
         self.nodes[secondInd] = tmpVal
     
@@ -53,7 +56,7 @@ class MinHeap:
         parInd: int = self.getParInd(ind)
         if not self.isValidInd(parInd):
             return
-        if self.nodes[parInd].procTime > self.nodes[ind].procTime:
+        if self.nodes[parInd] > self.nodes[ind]:
             self.swap(parInd, ind)
             self.heaptifyUp(parInd)
     
@@ -69,14 +72,14 @@ class MinHeap:
         
         smallerChildInd: int = leftChildInd
 
-        if self.isValidInd(rightChildInd) and self.nodes[rightChildInd].procTime < self.nodes[leftChildInd].procTime:
+        if self.isValidInd(rightChildInd) and self.nodes[rightChildInd] < self.nodes[leftChildInd]:
             smallerChildInd = rightChildInd
         
-        if self.nodes[ind].procTime > self.nodes[smallerChildInd].procTime:
+        if self.nodes[ind] > self.nodes[smallerChildInd]:
             self.swap(ind, smallerChildInd)
             self.heaptifyDown(smallerChildInd)
     
-    def addTask(self, task: Task):
+    def addTask(self, task: Tuple[int]):
         self.nodes.append(task)
         self.heaptifyUp(len(self.nodes) - 1)
     
