@@ -5,8 +5,8 @@ class Solution:
         result: List[int] = []
         serverPool: ServerPool = ServerPool()
 
-        for ind, weight in enumerate(servers):
-            serverPool.availServers.addNode((weight, ind))
+        for ind, val in enumerate(servers):
+            serverPool.availServers.addNode((val, ind))
         
         curTime: int = 0
         taskInd: int = 0
@@ -92,7 +92,7 @@ class MinHeap:
         
         smallerChildInd: int = leftChildInd
 
-        if self.isValidInd(rightChildInd) and self.nodes[rightChildInd] < self.nodes[leftChildInd]:
+        if self.isValidInd(rightChildInd) and self.nodes[rightChildInd] <= self.nodes[leftChildInd]:
             smallerChildInd = rightChildInd
         
         if self.nodes[ind] > self.nodes[smallerChildInd]:
