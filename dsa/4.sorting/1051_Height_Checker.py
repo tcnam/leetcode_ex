@@ -1,7 +1,7 @@
 import typing as t
 
 class Solution:
-    def heightChecker(self, heights: List[int]) -> int:
+    def heightChecker(self, heights: t.List[int]) -> int:
         # return self.method1(heights)
         return self.method2(heights)
     

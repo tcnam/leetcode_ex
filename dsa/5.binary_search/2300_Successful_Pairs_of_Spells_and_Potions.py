@@ -1,7 +1,7 @@
 import typing as t
 
 class Solution:
-    def successfulPairs(self, spells: t.List[int], potions: t.List[int], success: int) -> List[int]:
+    def successfulPairs(self, spells: t.List[int], potions: t.List[int], success: int) -> t.List[int]:
         result: t.List[int] = [0] * len(spells)
         self.mergeSort(potions, 0, len(potions) - 1)
 
