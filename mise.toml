@@ -1,0 +1,29 @@
+[tools]
+python = "3.11"
+
+[tasks.update_exec]
+description = "Commit exercises"
+usage = '''
+arg "<input>" {
+  help "Type of execise"
+  long_help """
+  The input file should be in JSON or YAML format.
+
+  Supported schemas:
+  - dsa: dsa execises
+  - data: data execises
+
+  Example:
+    mise run update dsa
+  """
+}
+flag "-m --message" {
+  help "commiet message"
+}
+'''
+
+run = [
+    "git add .",
+    '''git commit -m '"${usage_input?}": "${usage_message?}"' ''',
+    "git push origin master"
+]
