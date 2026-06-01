@@ -5,25 +5,25 @@ python = "3.11"
 description = "Commit exercises"
 usage = '''
 arg "<input>" {
-  help "Type of execise"
+  help "Type of exercise"
   long_help """
   The input file should be in JSON or YAML format.
 
   Supported schemas:
-  - dsa: dsa execises
-  - data: data execises
+  - dsa: dsa exercises
+  - data: data exercises
 
   Example:
     mise run update dsa
   """
 }
-flag "-m --message" {
-  help "commiet message"
+arg "<message>" {
+  help "commit message"
 }
 '''
 
 run = [
     "git add .",
-    '''git commit -m '"${usage_input?}": "${usage_message?}"' ''',
+    'git commit -m "${usage_input?}: ${usage_message?}"',
     "git push origin master"
 ]
