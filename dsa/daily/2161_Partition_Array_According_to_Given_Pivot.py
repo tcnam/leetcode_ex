@@ -18,6 +18,7 @@ class Solution:
         ind_before: int = 0
         ind_between: int = before_length
         ind_after: int = before_length + between_length
+        
         for num in nums:
             if num < pivot:
                 result[ind_before] = num
