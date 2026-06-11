@@ -8,7 +8,7 @@ class TreeNode:
 
 
 class Solution:
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+    def binaryTreePaths(self, root: t.Optional[TreeNode]) -> t.List[str]:
         path_list: t.List[str] = []
         self.binaryTreePathsHelper(root, path_list, "")
         return path_list
