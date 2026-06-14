@@ -74,4 +74,3 @@ class Solution:
                 result.append([cur_vertex[0], cur_vertex[1]])
         
         return result
-
